@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buy Parking Slot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .buy-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background: #2c2c2c;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        .buy-container h2 { margin-bottom: 20px; }
+        .slot-info { font-size: 1.2rem; margin-bottom: 20px; }
+        .pay-btn {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            background: #28a745;
+            border: none;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .pay-btn:hover { background: #218838; }
+        .confirmation {
+            margin-top: 20px;
+            padding: 15px;
+            background: #333;
+            border-radius: 10px;
+            display: none;
+        }
+        .success { color: #00ff88; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="buy-container">
+        <h2>Reserve Parking Slot</h2>
+        <div class="slot-info">
+            You are booking <strong>Slot {{ slot }}</strong>
+        </div>
+        <button class="pay-btn" onclick="makePayment()">Pay Now</button>
+        <div class="confirmation" id="confirmation">
+            <p class="success">✅ Payment Successful!</p>
+            <p>Transaction ID: <span id="txn-id"></span></p>
+            <p>Slot <strong>{{ slot }}</strong> reserved for you.</p>
+            <a href="{{ url_for('index') }}">
+                <button class="pay-btn" style="background:#007bff;">Back to Dashboard</button>
+            </a>
+        </div>
+    </div>
+    <script>
+        function makePayment() {
+            const txnId = Math.floor(Math.random() * 1000000000);
+            document.getElementById("txn-id").innerText = txnId;
+            document.getElementById("confirmation").style.display = "block";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Parking Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Parking Lot Dashboard</h1>
+
+    <div class="status">
+        <span>Total Cars: <span id="total">0</span> / {{ max_slots }}</span>
+        <span id="full-indicator" class="full">FULL</span>
+    </div>
+
+    <div class="slots">
+        {% for i in range(1, max_slots+1) %}
+        <div class="slot" id="slot-{{ i }}">
+            <div class="slot-number">Slot {{ i }}</div>
+            <img src="{{ url_for('static', filename='car.png') }}" class="car">
+            <a href="/buy/{{ i }}">
+                <button class="buy-btn">Buy</button>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
