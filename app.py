@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 # ESP8266 IP (update with your ESP's IP)
-ESP_IP = "http://10.134.40.224"
+ESP_IP = "localIP"
 MAX_SLOTS = 8
 occupied = 0  
 
@@ -31,4 +31,5 @@ def buy(slot):
 
 if __name__ == "__main__":
      app.run(host="0.0.0.0", port=5000, debug=True)
+
 
